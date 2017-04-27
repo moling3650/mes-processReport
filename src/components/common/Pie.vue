@@ -55,8 +55,7 @@
             data: [],
             label: {
               normal: {
-                position: 'inner',
-                formatter: '{d}%',
+                formatter: '{b}: {d}%',
                 textStyle: {
                   color: '#333',
                   fontWeight: 'bold',
