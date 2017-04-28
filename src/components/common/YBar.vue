@@ -24,9 +24,9 @@
         myChart: null
       }
     },
-    watch: {
-      'processCode': 'fetchData'
-    },
+    // watch: {
+    //   'processCode': 'fetchData'
+    // },
     methods: {
       init () {
         this.myChart = this.echarts.init(this.$refs['y-bar'])
@@ -40,9 +40,9 @@
           },
           grid: {
             top: '1%',
-            right: 100,
+            right: '10%',
             bottom: '1%',
-            left: '5%',
+            left: '1%',
             containLabel: true
           },
           xAxis: {
@@ -50,13 +50,18 @@
           yAxis: {
             data: [],
             axisLabel: {
-              rotate: 0
+              rotate: 0,
+              textStyle: {
+                fontSize: 30,
+                fontWeight: 'bold'
+              }
             },
             axisTick: {
               length: 999
             }
           },
           color: ['#418ebd', '#44c57e', '#c23531', '#c4ccd3'],
+          // animation: false,
           series: [{
             name: '计划',
             type: 'bar',
@@ -65,7 +70,7 @@
                 show: true,
                 position: 'right',
                 textStyle: {
-                  fontSize: 18,
+                  fontSize: 30,
                   fontWeight: 'bold'
                 }
               }
@@ -78,7 +83,7 @@
                 show: true,
                 position: 'right',
                 textStyle: {
-                  fontSize: 18,
+                  fontSize: 30,
                   fontWeight: 'bold'
                 }
               }
@@ -106,8 +111,24 @@
       }
     },
     mounted () {
+      console.log('y-bar mounted')
       this.init()
+    },
+    activated () {
+      console.log('y-bar activated')
       this.processCode && this.fetchData()
+    },
+    deactivated () {
+      this.myChart.setOption({
+        yAxis: {
+          data: []
+        },
+        series: [{
+          data: []
+        }, {
+          data: []
+        }]
+      })
     }
   }
 </script>

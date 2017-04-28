@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <transition name="slide-left">
+    <!-- <transition name="slide-left"> -->
+    <keep-alive>
       <router-view :process="currentProcess"></router-view>
-    </transition>
+    </keep-alive>
+    <!-- </transition> -->
   </div>
 </template>
 
@@ -50,16 +52,16 @@
   }
 
   .slide-left-enter-active, .slide-left-leave-active {
-    transition: all .3s;
+    transition: all .5s;
   }
 
   .slide-left-enter {
-    transform: translateX(100%);
+    /* transform: translateX(100%); */
     opacity: 0;
   }
 
   .slide-left-leave-active {
-    transform: translateX(-100%);
+    /* transform: translateX(-100%); */
     opacity: 0;
   }
 </style>

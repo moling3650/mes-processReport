@@ -1,5 +1,5 @@
 <template>
-  <div class="m-table">
+  <div class="m-table" v-show="show">
     <h1 class="title">{{ process.process_name }}</h1>
     <table class="table">
       <!-- <caption>工序日报表</caption> -->
@@ -7,7 +7,7 @@
         <tr>
           <th>日期</th>
           <th>班次</th>
-          <th>工序</th>
+          <!-- <th>工序</th> -->
           <th>批次</th>
           <th>投入</th>
           <th>产出</th>
@@ -19,7 +19,7 @@
         <tr v-for="(item, idx) in dataList" :key="idx">
           <td>{{item.P_date.substr(0, 10)}}</td>
           <td>{{item.Class_code}}</td>
-          <td>{{item.P_name}}</td>
+          <!-- <td>{{item.P_name}}</td> -->
           <td>{{item.OrderN0}}</td>
           <td>{{item.Initqty}}</td>
           <td>{{item.Qty}}</td>
@@ -42,6 +42,7 @@
     },
     data () {
       return {
+        show: false,
         dataList: []
       }
     },
@@ -52,11 +53,19 @@
       fetchData () {
         this.$http.get(`/DataAPI/ProduceReport/processInOutNg.ashx?process_code=${this.process.process_code}`).then(res => {
           this.dataList = res.data.InOutNgList
+          this.show = true
         }).catch(err => console.error(err))
       }
     },
     mounted () {
+      console.log('m-table mounted')
+    },
+    activated () {
+      console.log('m-table activated')
       this.process && this.fetchData()
+    },
+    deactivated () {
+      this.show = false
     }
   }
 </script>
@@ -76,7 +85,7 @@
 
   .title {
     margin: 20px;
-    font-size: 20px;
+    font-size: 48px;
     font-weight: bold;
   }
 

@@ -33,9 +33,9 @@
         colors: ['#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
       }
     },
-    watch: {
-      'processCode': 'fetchData'
-    },
+    // watch: {
+    //   'processCode': 'fetchData'
+    // },
     methods: {
       init () {
         this.myChart = this.echarts.init(this.$refs['x-bar'])
@@ -58,6 +58,7 @@
           yAxis: {
           },
           color: ['#418ebd'],
+          // animation: false,
           series: [{
             name: '数量',
             type: 'bar',
@@ -75,7 +76,6 @@
         this.myChart.setOption(option)
       },
       fetchData () {
-        console.log(this.api)
         this.$http.get(`/DataAPI/ProduceReport/processInOutNg.ashx?ActType=${this.api}&process_code=${this.processCode}`).then(res => {
           var dataList = res.data.Ng_codeList
           this.myChart.setOption({
@@ -99,8 +99,22 @@
       }
     },
     mounted () {
+      console.log('x-bar mounted')
       this.init()
+    },
+    activated () {
+      console.log('x-bar activated')
       this.processCode && this.fetchData()
+    },
+    deactivated () {
+      this.myChart.setOption({
+        xAxis: {
+          data: []
+        },
+        series: [{
+          data: []
+        }]
+      })
     }
   }
 </script>

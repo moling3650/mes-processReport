@@ -35,7 +35,7 @@
 
   .container {
     position: absolute;
-    top: 10%;
+    top: 15%;
     right: 0;
     bottom: 0;
     left: 0;
@@ -44,7 +44,7 @@
 
   .title {
     margin: 20px;
-    font-size: 20px;
+    font-size: 48px;
     font-weight: bold;
   }
 </style>

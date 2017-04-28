@@ -60,7 +60,7 @@
 
   .title {
     margin: 20px;
-    font-size: 20px;
+    font-size: 48px;
     font-weight: bold;
   }
 
