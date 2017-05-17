@@ -1,5 +1,5 @@
 <template>
-  <div class="m-table" v-show="show">
+  <div class="m-table">
     <h1 class="title">{{ process.process_name }}</h1>
     <table class="table">
       <!-- <caption>工序日报表</caption> -->
@@ -57,11 +57,7 @@
         }).catch(err => console.error(err))
       }
     },
-    mounted () {
-      console.log('m-table mounted')
-    },
     activated () {
-      console.log('m-table activated')
       this.process && this.fetchData()
     },
     deactivated () {
@@ -100,12 +96,12 @@
     padding: 10px;
     font-weight: bold;
   }
-/*
-  .table th:nth-child(1), .table td:nth-child(1) {
+
+  .table th:nth-child(n), .table td:nth-child(n) {
     width: 10%;
     text-align: center;
   }
-  .table th:nth-child(2), .table td:nth-child(2) {
+/*  .table th:nth-child(2), .table td:nth-child(2) {
     width: 10%;
     text-align: center;
   }

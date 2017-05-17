@@ -2,7 +2,7 @@
   <div class="m-chart">
     <h1 class="title">{{ process.process_name }}</h1>
     <div class="container">
-      <y-bar :process-code="process.process_code"></y-bar>
+      <y-bar :process-code="process.process_code || ''"></y-bar>
     </div>
   </div>
 </template>

@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <!-- <transition name="slide-left"> -->
-    <keep-alive>
-      <router-view :process="currentProcess"></router-view>
-    </keep-alive>
-    <!-- </transition> -->
+    <transition name="slide-left">
+      <keep-alive>
+        <router-view :process="currentProcess"></router-view>
+      </keep-alive>
+    </transition>
   </div>
 </template>
 
@@ -24,14 +24,6 @@
         return (this.processList.length <= this.pl_index) ? {} : this.processList[this.pl_index]
       }
     },
-    created () {
-      this.$http.get('/DataAPI/ProduceReport/processInOutNg.ashx?ActType=GetProcessCode').then(res => {
-        this.processList = res.data.ProcessList
-        if (this.processList.length > 0) {
-          setInterval(this.changePage, 40000)
-        }
-      }).catch(err => console.error(err))
-    },
     methods: {
       changePage () {
         this.rm_index = (this.rm_index + 1) % this.routeMap.length
@@ -40,6 +32,14 @@
         }
         this.$router.push(this.routeMap[this.rm_index])
       }
+    },
+    created () {
+      this.$http.get('/DataAPI/ProduceReport/processInOutNg.ashx?ActType=GetProcessCode').then(res => {
+        this.processList = res.data.ProcessList
+        if (this.processList.length > 0) {
+          setInterval(this.changePage, 5000)
+        }
+      }).catch(err => console.error(err))
     }
   }
 </script>
@@ -56,12 +56,12 @@
   }
 
   .slide-left-enter {
-    /* transform: translateX(100%); */
+    transform: translateX(100%);
     opacity: 0;
   }
 
   .slide-left-leave-active {
-    /* transform: translateX(-100%); */
+    transform: translateX(-100%);
     opacity: 0;
   }
 </style>

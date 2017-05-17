@@ -28,10 +28,13 @@
         myChart: null
       }
     },
-    // watch: {
-    //   'processCode': 'fetchData'
-    // },
+    // 监视数据变化
+    watch: {
+      'processCode': 'fetchData'
+    },
+    // 自定义的方法
     methods: {
+      // 初始化echarts的设置
       init () {
         this.myChart = this.echarts.init(this.$refs['pie'])
         let option = {
@@ -68,6 +71,7 @@
         }
         this.myChart.setOption(option)
       },
+      // 从接口调动数据，并更新图表
       fetchData () {
         this.$http.get(`/DataAPI/ProduceReport/processInOutNg.ashx?ActType=${this.api}&process_code=${this.processCode}`).then(res => {
           let dataList = res.data.Ng_codeList
@@ -82,14 +86,15 @@
         })
       }
     },
+    // 钩子函数，当组件首次挂载到页面时调用
     mounted () {
-      console.log('pie mounted')
       this.init()
     },
+    // 钩子函数，激活组件时候调用
     activated () {
-      console.log('pie activated')
       this.processCode && this.fetchData()
     },
+    // 钩子函数，解除组件时调用
     deactivated () {
       this.myChart.setOption({
         legend: {

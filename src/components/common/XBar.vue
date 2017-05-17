@@ -33,9 +33,9 @@
         colors: ['#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3']
       }
     },
-    // watch: {
-    //   'processCode': 'fetchData'
-    // },
+    watch: {
+      'processCode': 'fetchData'
+    },
     methods: {
       init () {
         this.myChart = this.echarts.init(this.$refs['x-bar'])
@@ -99,11 +99,9 @@
       }
     },
     mounted () {
-      console.log('x-bar mounted')
       this.init()
     },
     activated () {
-      console.log('x-bar activated')
       this.processCode && this.fetchData()
     },
     deactivated () {

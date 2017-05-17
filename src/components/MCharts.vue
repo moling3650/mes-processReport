@@ -5,11 +5,11 @@
       <x-bar width="50%"
         title="不良现象"
         api="GetNg_Code"
-        :process-code="process.process_code">
+        :process-code="process.process_code || ''">
       </x-bar>
       <pie width="50%"
         api="GetNg_Code"
-        :process-code="process.process_code">
+        :process-code="process.process_code || ''">
       </pie>
     </div>
   </div>

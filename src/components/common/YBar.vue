@@ -24,9 +24,9 @@
         myChart: null
       }
     },
-    // watch: {
-    //   'processCode': 'fetchData'
-    // },
+    watch: {
+      'processCode': 'fetchData'
+    },
     methods: {
       init () {
         this.myChart = this.echarts.init(this.$refs['y-bar'])
@@ -111,14 +111,14 @@
       }
     },
     mounted () {
-      console.log('y-bar mounted')
       this.init()
     },
     activated () {
-      console.log('y-bar activated')
+      console.log('y a')
       this.processCode && this.fetchData()
     },
     deactivated () {
+      console.log('y d')
       this.myChart.setOption({
         yAxis: {
           data: []
